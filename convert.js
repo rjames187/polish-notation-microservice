@@ -80,6 +80,18 @@ class ExpressionTree {
             }
             return result;
         }
+
+        this.postOrder = function (aNode){
+            var result = "";
+            if (aNode.lChild == null){
+                result += this.postOrder(aNode.lChild) + " ";
+            }
+            if (aNode.rChild != null){
+                result += self.postOrder(aNode.rChild) + " ";
+            }
+            result += aNode.data + " ";
+            return result
+        }
     }
 }
 

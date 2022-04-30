@@ -96,7 +96,7 @@ class ExpressionTree {
 }
 
 function Operate(oper1, oper2, token) {
-    expr = '(' + oper1 + token + oper2 + ')';
+    expr = '( ' + oper1 + " " + token + " " + oper2 + ' )';
     return expr
 }
 
@@ -106,13 +106,31 @@ console.log(tree.preOrder(tree.root))
 
 
 module.exports = {
-// prefix to infix converter
+// postfix to infix converter
     posfToIf : function (s){
         var operators = ['+', '-', '*', '%', '/', '//', '**'];
         var theStack = new Stack()
         var tokens = s.split(" ")
         console.log(tokens)
         for (let i = 0; i < tokens.length; i++){
+            theStack.print()
+            if (operators.includes(tokens[i])){
+                console.log(tokens[i])
+                oper2 = theStack.pop();
+                oper1 = theStack.pop();
+                theStack.push(Operate(oper1, oper2, tokens[i]));
+            } else {
+                theStack.push(tokens[i])
+            }
+        }
+        return theStack.pop()
+    },
+// prefix to infix converter
+    prefToIf : function (s){
+        var operators = ['+', '-', '*', '%', '/', '//', '**'];
+        var theStack = new Stack()
+        var tokens = s.split(" ")
+        for (let i = tokens.length - 1; i >= 0; i--){
             theStack.print()
             if (operators.includes(tokens[i])){
                 console.log(tokens[i])

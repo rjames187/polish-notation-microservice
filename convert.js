@@ -41,6 +41,7 @@ class ExpressionTree {
         this.createTree = function (expr) {
             var operators = ['+', '-', '*', '%', '/', '**'];
             var expr = expr.split(" ");
+            //console.log(expr);
             var stack = new Stack();
             var curNode = new Node();
 
@@ -58,6 +59,10 @@ class ExpressionTree {
                 } else if (expr[curToken] == ')'){
                     if (!stack.isEmpty()){
                         curNode = stack.pop();
+                    } else{
+                        var newNode = new Node();
+                        newNode.lChild = curNode;
+                        curNode = newNode;
                     }
                 } else {
                     curNode.data = expr[curToken];

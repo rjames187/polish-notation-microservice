@@ -110,11 +110,11 @@ function posfToIf (s){
     var operators = ['+', '-', '*', '%', '/', '**'];
     var theStack = new Stack()
     var tokens = s.trim().split(" ")
-    console.log(tokens)
+    //console.log(tokens)
     for (let i = 0; i < tokens.length; i++){
-        theStack.print()
+        //theStack.print()
         if (operators.includes(tokens[i])){
-            console.log(tokens[i])
+            //console.log(tokens[i])
             oper2 = theStack.pop();
             oper1 = theStack.pop();
             theStack.push(Operate(oper1, oper2, tokens[i]));
@@ -131,9 +131,9 @@ function preftoIf (s){
     var theStack = new Stack()
     var tokens = s.split(" ")
     for (let i = tokens.length - 1; i >= 0; i--){
-        theStack.print()
+        //theStack.print()
         if (operators.includes(tokens[i])){
-            console.log(tokens[i])
+            //console.log(tokens[i])
             oper2 = theStack.pop();
             oper1 = theStack.pop();
             theStack.push(Operate(oper2, oper1, tokens[i]));
@@ -168,7 +168,7 @@ module.exports = {
         var tree = new ExpressionTree();
         tree.createTree(infix);
         prefix = tree.preOrder(tree.root);
-        return {"infix" : infix, "prefix" : prefix, "postfix" :  eval(infix)};
+        return {"infix" : infix, "prefix" : prefix, "postfix" :  postfix, "eval" : eval(infix)};
     }
 }
 

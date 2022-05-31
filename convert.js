@@ -76,7 +76,9 @@ class ExpressionTree {
         this.preOrder = function (aNode){
             
             var result = "";
-            result += aNode.data + " ";
+            if (aNode.data != null){
+                result += aNode.data + " ";
+            }
             if (aNode.lChild != null){
                 result += this.preOrder(aNode.lChild).trim() + " ";
             }
@@ -94,7 +96,9 @@ class ExpressionTree {
             if (aNode.rChild != null){
                 result += this.postOrder(aNode.rChild).trim() + " ";
             }
-            result += aNode.data + " ";
+            if (aNode.data != null){
+                result += aNode.data + " ";
+            }
             return result
         }
     }

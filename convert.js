@@ -41,12 +41,10 @@ class ExpressionTree {
         this.createTree = function (expr) {
             var operators = ['+', '-', '*', '%', '/', '**'];
             var expr = expr.split(" ");
-            //console.log(expr);
             var stack = new Stack();
             var curNode = new Node();
 
             for (let curToken = 0; curToken < expr.length; curToken++){
-                //console.log(expr[curToken]);
                 if (expr[curToken] == '('){
                     curNode.lChild = new Node();
                     stack.push(curNode);
@@ -109,21 +107,12 @@ function Operate(oper1, oper2, token) {
     return expr
 }
 
-// var tree = new ExpressionTree();
-// console.log(eval("( 111 % ( ( ( 2 * 4 ) + 6 ) - -16 ) )"))
-// tree.createTree("( 111 % ( ( ( 2 * 4 ) + 6 ) - -16 ) )");
-// console.log(tree.postOrder(tree.root))
-
-// postfix to infix converter
 function posfToIf (s){
     var operators = ['+', '-', '*', '%', '/', '**'];
     var theStack = new Stack()
     var tokens = s.trim().split(" ")
-    //console.log(tokens)
     for (let i = 0; i < tokens.length; i++){
-        //theStack.print()
         if (operators.includes(tokens[i])){
-            //console.log(tokens[i])
             oper2 = theStack.pop();
             oper1 = theStack.pop();
             theStack.push(Operate(oper1, oper2, tokens[i]));
@@ -140,9 +129,7 @@ function preftoIf (s){
     var theStack = new Stack()
     var tokens = s.split(" ")
     for (let i = tokens.length - 1; i >= 0; i--){
-        //theStack.print()
         if (operators.includes(tokens[i])){
-            //console.log(tokens[i])
             oper2 = theStack.pop();
             oper1 = theStack.pop();
             theStack.push(Operate(oper2, oper1, tokens[i]));
@@ -152,9 +139,6 @@ function preftoIf (s){
     }
     return theStack.pop();
 }
-
-//console.log(posfToIf('111 2 4 * 6 + -16 - %'));
-//console.log(preftoIf('+ 5  4'))
 
 module.exports = {
     infix : function (s){
